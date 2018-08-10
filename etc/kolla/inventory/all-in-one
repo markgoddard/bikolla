@@ -1,0 +1,44 @@
+# These initial groups are the only groups required to be modified. The
+# additional groups are for more control of the environment.
+[control]
+localhost ansible_host=127.0.0.1 ansible_become=true
+
+[baremetal:children]
+control
+
+[mariadb:children]
+control
+
+[rabbitmq:children]
+control
+
+[ironic:children]
+control
+
+# iSCSI
+[iscsid:children]
+ironic
+
+# Ironic
+[ironic-api:children]
+ironic
+
+[ironic-conductor:children]
+ironic
+
+[ironic-inspector:children]
+ironic
+
+[ironic-pxe:children]
+ironic
+
+[ironic-ipxe:children]
+ironic
+
+# Referenced but not required.
+[compute]
+[memcached]
+[cinder-volume]
+[tgtd]
+[bifrost]
+[deployment]

@@ -1,0 +1,22 @@
+---
+virtualenv: /home/centos/kolla-venv
+kolla_user: "{{ lookup('env', 'USER') }}"
+kolla_group: "{{ lookup('env', 'USER') }}"
+
+openstack_release: master
+kolla_internal_address: "{{ api_interface_address }}"
+
+enable_fluentd: "no"
+enable_glance: "no"
+enable_haproxy: "no"
+enable_heat: "no"
+enable_horizon: "no"
+enable_ironic: "yes"
+enable_ironic_ipxe: "yes"
+enable_keystone: "no"
+enable_memcached: "no"
+enable_neutron: "no"
+enable_nova: "no"
+enable_openvswitch: "no"
+
+ironic_dnsmasq_dhcp_range: 10.0.0.200,10.0.0.254
