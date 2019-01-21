@@ -1,7 +1,7 @@
 # These initial groups are the only groups required to be modified. The
 # additional groups are for more control of the environment.
 [control]
-localhost ansible_host=127.0.0.1 ansible_become=true
+localhost ansible_host=127.0.0.1
 
 [baremetal:children]
 control
