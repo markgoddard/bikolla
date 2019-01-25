@@ -8,7 +8,7 @@ pip install -U pip
 pip install -U setuptools
 pip install python-openstackclient python-ironicclient python-ironic-inspector-client
 
-INTERFACE=${INTERFACE:-eth0}
+INTERFACE=${INTERFACE:-breth1}
 IP=$(ip a show dev $INTERFACE | grep 'inet ' | awk '{ print $2 }' | sed 's/\/.*//g')
 
 mkdir -p ~/.config/openstack

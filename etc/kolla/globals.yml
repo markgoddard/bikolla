@@ -3,9 +3,17 @@ virtualenv: /home/centos/kolla-venv
 kolla_user: "{{ lookup('env', 'USER') }}"
 kolla_group: "{{ lookup('env', 'USER') }}"
 
+# Set to either 'source' or 'binary'.
+kolla_install_type: source
+
 openstack_release: master
+
+# Set $INTERFACE to your network interface.
+api_interface: "{{ lookup('env', 'INTERFACE') | default('breth1', true) }}"
+
 kolla_internal_address: "{{ api_interface_address }}"
 
+# Disable default OpenStack services.
 enable_fluentd: "no"
 enable_glance: "no"
 enable_haproxy: "no"
