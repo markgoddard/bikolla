@@ -13,7 +13,7 @@ if [[ ! -d ./kolla-ansible ]]; then
   git clone https://github.com/openstack/kolla-ansible
 fi
 virtualenv kolla-venv
-if  [[ ! -s kolla-venv/lib/python2.7/site-packages/ ]]; then
+if  [[ ! -L kolla-venv/lib/python2.7/site-packages/selinux ]]; then
   ln -s /usr/lib64/python2.7/site-packages/selinux/ kolla-venv/lib/python2.7/site-packages/
 fi
 source kolla-venv/bin/activate
