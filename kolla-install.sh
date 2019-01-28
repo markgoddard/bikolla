@@ -2,7 +2,7 @@
 
 set -e
 
-sudo yum install wget python-devel libffi-devel gcc openssl-devel libselinux-python python-virtualenv
+sudo yum -y install wget python-devel libffi-devel gcc openssl-devel libselinux-python python-virtualenv
 
 if [[ ! -f ~/.ssh/id_rsa ]]; then
   ssh-keygen  -f ~/.ssh/id_rsa -t rsa -N ''
@@ -33,6 +33,7 @@ if [[ ! -e /etc/kolla/passwords.yml ]]; then
   cp kolla-venv/share/kolla-ansible/etc_examples/kolla/passwords.yml /etc/kolla/
   kolla-genpwd
 fi
+ssh-keyscan 127.0.0.1 >> ~/.ssh/known_hosts
 kolla-ansible -i /etc/kolla/inventory/all-in-one bootstrap-servers
 
 if ! groups | grep docker >/dev/null; then
