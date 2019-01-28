@@ -89,12 +89,12 @@ To install the ``openstack`` client in a virtual environment and create a
 
 To access ironic::
 
-    export OS_CLOUD=bikolla
+    export OS_CLOUD=bifrost
     openstack baremetal node list
 
 To access ironic inspector::
 
-    export OS_CLOUD=bikolla-inspector
+    export OS_CLOUD=bifrost-inspector
     openstack baremetal introspection list
 
 Tenks

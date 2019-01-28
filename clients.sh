@@ -11,18 +11,20 @@ pip install python-openstackclient python-ironicclient python-ironic-inspector-c
 INTERFACE=${INTERFACE:-breth1}
 IP=$(ip a show dev $INTERFACE | grep 'inet ' | awk '{ print $2 }' | sed 's/\/.*//g')
 
-mkdir -p ~/.config/openstack
-cat << EOF | sudo tee ~/.config/openstack/clouds.yaml
+if [[ ! -f ~/.config/openstack/clouds.yaml ]]; then
+    mkdir -p ~/.config/openstack
+    cat << EOF | sudo tee ~/.config/openstack/clouds.yaml
 ---
 clouds:
-  bikolla:
+  bifrost:
     auth_type: "none"
     endpoint: http://$IP:6385
-  bikolla-inspector:
+  bifrost-inspector:
     auth_type: "none"
     endpoint: http://$IP:5050
 EOF
+fi
 
 echo source os-venv/bin/activate to enter the virtual environment
-echo export OS_CLOUD=bikolla to use ironic
-echo export OS_CLOUD=bikolla-inspector to use ironic inspector
+echo export OS_CLOUD=bifrost to use ironic
+echo export OS_CLOUD=bifrost-inspector to use ironic inspector
