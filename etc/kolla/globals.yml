@@ -30,6 +30,10 @@ enable_openvswitch: "no"
 # Set $DHCP_RANGE to a DHCP range for dnsmasq.
 ironic_dnsmasq_dhcp_range: "{{ lookup('env', 'DHCP_RANGE') | default('192.168.1.3,192.168.1.254', true) }}"
 
+# Don't enable the inspector PXE filter since we're using the DHCP server for
+# provisioning as well as inspection.
+ironic_inspector_pxe_filter: noop
+
 ironic_inspector_kernel_cmdline_extras:
   - console=ttyS0
   - nofb
