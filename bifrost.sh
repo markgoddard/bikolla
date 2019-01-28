@@ -16,7 +16,7 @@ if [[ ! -d bifrost ]]; then
   popd
 fi
 
-virtualenv bifrost-venv
+virtualenv --system-site-packages bifrost-venv
 if [[ ! -L bifrost-venv/lib/python2.7/site-packages/selinux ]]; then
   ln -s /usr/lib64/python2.7/site-packages/selinux/ bifrost-venv/lib/python2.7/site-packages/
 fi
@@ -30,11 +30,12 @@ pip install diskimage-builder
 # Required by bifrost_inventory.py
 pip install shade
 
+# Create an image.
 cd bifrost/playbooks
 export VENV=$VIRTUAL_ENV
 ansible-playbook -i inventory/target -e @../../bifrost.yml install.yaml
-sudo rsync /httpboot/deployment_image.qcow2 /var/lib/docker/volumes/ironic_ipxe/_data/
-# bifrost_inventory.py doesn't understand clouds.yaml.
-source ~/openrc
+
+# Deploy nodes.
+export OS_CLOUD=bifrost
 export BIFROST_INVENTORY_SOURCE=ironic
 ansible-playbook -i inventory/bifrost_inventory.py -e @../../bifrost.yml deploy-dynamic.yaml
