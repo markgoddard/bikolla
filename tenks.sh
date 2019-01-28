@@ -22,6 +22,24 @@ ansible-galaxy install \
   --role-file="tenks/requirements.yml" \
   --roles-path="tenks/ansible/roles/"
 
+INTERFACE=${INTERFACE:-breth1}
+IP=$(ip a show dev $INTERFACE | grep 'inet ' | awk '{ print $2 }' | sed 's/\/.*//g')
+
+if [[ ! -f ~/.config/openstack/clouds.yaml ]]; then
+    mkdir -p ~/.config/openstack
+    cat << EOF | sudo tee ~/.config/openstack/clouds.yaml
+---
+clouds:
+  bifrost:
+    auth_type: "none"
+    endpoint: http://$IP:6385
+  bifrost-inspector:
+    auth_type: "none"
+    endpoint: http://$IP:5050
+EOF
+fi
+
+export OS_CLOUD=bifrost
 ansible-playbook \
   -vvv \
   --inventory "tenks/ansible/inventory" \
