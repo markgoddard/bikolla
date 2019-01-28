@@ -36,9 +36,8 @@ fi
 kolla-ansible -i /etc/kolla/inventory/all-in-one bootstrap-servers
 
 if ! groups | grep docker >/dev/null; then
-  echo "Logging out to apply docker group membership"
-  echo "Log in again and run deploy.sh"
-  logout
+  echo "Please log out then log back in to pick up Docker group membership"
+  echo "After this, run kolla-deploy.sh"
 else
-  echo "Now run deploy.sh"
+  echo "Now run kolla-deploy.sh"
 fi
