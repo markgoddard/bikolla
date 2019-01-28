@@ -75,7 +75,7 @@ At this point there are a few options.
 1. Use the ``openstack`` client directly to interact with the ironic and
    inspector APIs
 2. Use Tenks to create and register some virtual bare metal nodes for testing
-2. Use Bifrost to automate image building and node provisioning
+3. Use Bifrost to automate image building and node provisioning
 
 Clients
 -------
