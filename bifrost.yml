@@ -1,0 +1,21 @@
+---
+skip_install: True
+skip_package_install: True
+skip_bootstrap: True
+skip_start: True
+skip_migrations: True
+dib_os_element: centos7
+dib_os_release: GenericCloud
+dib_elements: disable-selinux enable-serial-console vm cloud-init-datasources
+dib_env_vars:
+  DIB_CLOUD_INIT_DATASOURCES: "ConfigDrive"
+network_interface: "{{ lookup('env', 'INTERFACE') | default('breth1', true) }}"
+api_ip: "{{ hostvars['localhost']['ansible_' ~ network_interface].ipv4.address }}"
+ironic_api_url: "http://{{ api_ip }}:6385"
+ironic_inspector_api_url: "http://{{ api_ip }}:5050"
+ansible_python_interpreter: "../../bifrost-venv/bin/python"
+
+# Deploy-dynamic config:
+http_boot_folder: /var/lib/docker/volumes/ironic_ipxe/_data
+ironic_url: "{{ lookup('env', 'OS_URL') }}"
+file_url_port: 8089
