@@ -18,14 +18,6 @@ Clone this repo::
 
     git clone https://github.com/markgoddard/bikolla
 
-Install dependencies for Kolla Ansible, including Ansible and Docker::
-
-    cd bikolla
-    ./kolla-install.sh
-
-This will likely log you out. You should log back in, picking up membership of
-the ``docker`` group.
-
 Kolla Ansible needs to know the name of the network interface on which
 services will be exposed. This should be done as follows::
 
@@ -48,6 +40,14 @@ of ``$INTERFACE``. This is done as follows::
 
 There are various configuration files under ``etc/kolla`` which can be modified
 to configure the control plane if necessary.
+
+Install dependencies for Kolla Ansible, including Ansible and Docker::
+
+    cd bikolla
+    ./kolla-install.sh
+
+This will likely log you out. You should log back in, picking up membership of
+the ``docker`` group.
 
 Next, deploy containers::
 
