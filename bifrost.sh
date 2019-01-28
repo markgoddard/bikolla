@@ -12,7 +12,7 @@ if [[ ! -d bifrost ]]; then
   pushd bifrost
   # Checkout https://review.openstack.org/#/c/633476/, which includes two minor
   # fixes.
-  git fetch https://git.openstack.org/openstack/bifrost refs/changes/76/633476/1 && git checkout FETCH_HEAD
+  git fetch https://git.openstack.org/openstack/bifrost refs/changes/76/633476/2 && git checkout FETCH_HEAD
   popd
 fi
 
