@@ -25,4 +25,4 @@ EOF
 
 echo source os-venv/bin/activate to enter the virtual environment
 echo export OS_CLOUD=bikolla to use ironic
-echo export OS_CLOUD=bikolla to use ironic inspector
+echo export OS_CLOUD=bikolla-inspector to use ironic inspector
