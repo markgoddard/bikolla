@@ -27,4 +27,11 @@ enable_neutron: "no"
 enable_nova: "no"
 enable_openvswitch: "no"
 
-ironic_dnsmasq_dhcp_range: 10.0.0.200,10.0.0.254
+# Set $DHCP_RANGE to a DHCP range for dnsmasq.
+ironic_dnsmasq_dhcp_range: "{{ lookup('env', 'DHCP_RANGE') | default('192.168.1.3,192.168.1.254', true) }}"
+
+ironic_inspector_kernel_cmdline_extras:
+  - console=ttyS0
+  - nofb
+  - nomodeset
+  - vga=normal
