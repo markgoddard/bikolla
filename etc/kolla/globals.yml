@@ -14,18 +14,12 @@ api_interface: "{{ lookup('env', 'INTERFACE') | default('breth1', true) }}"
 kolla_internal_address: "{{ api_interface_address }}"
 
 # Disable default OpenStack services.
+enable_openstack_core: "no"
 enable_fluentd: "no"
-enable_glance: "no"
 enable_haproxy: "no"
-enable_heat: "no"
-enable_horizon: "no"
 enable_ironic: "yes"
 enable_ironic_ipxe: "yes"
-enable_keystone: "no"
 enable_memcached: "no"
-enable_neutron: "no"
-enable_nova: "no"
-enable_openvswitch: "no"
 
 # Set $DHCP_RANGE to a DHCP range for dnsmasq.
 ironic_dnsmasq_dhcp_range: "{{ lookup('env', 'DHCP_RANGE') | default('192.168.1.3,192.168.1.254', true) }}"

@@ -11,6 +11,9 @@ cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
 
 if [[ ! -d ./kolla-ansible ]]; then
   git clone https://github.com/openstack/kolla-ansible
+  pushd kolla-ansible
+  git fetch https://git.openstack.org/openstack/kolla-ansible refs/changes/03/633503/1 && git cherry-pick FETCH_HEAD
+  popd
 fi
 virtualenv kolla-venv
 if  [[ ! -L kolla-venv/lib/python2.7/site-packages/selinux ]]; then
